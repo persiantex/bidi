@@ -282,7 +282,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{50082}
+%% \CheckSum{50407}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -3373,6 +3373,217 @@ ill-advised in the old versions of bidi package.%
 \protected\def\bidi@error{\PackageError{bidi}}
 \protected\def\bidi@warning{\PackageWarning{bidi}}
 \protected\def\bidi@info{\PackageInfo{bidi}}
+
+\def\bidi@pos#1#2#3#4{\bidi@namegdef{bidi@#1pos@@#2@#3}{#4}}
+
+\newcount\bidi@poscount
+
+\newcommand*{\WriteStartXPostoaux}{%
+  \global\advance\bidi@poscount\@ne
+    \edef\@tempa{%
+      \write\@auxout{%
+        \string\bidi@pos{x}{start}{\number\bidi@poscount}{\noexpand\number\noexpand\pdflastxpos}%
+      }%
+    }%
+    \ifvmode
+      \leavevmode
+    \fi
+  \if@RTL
+       \if@filesw
+    \@tempa
+  \fi
+  \pdfsavepos
+    \else
+  \pdfsavepos
+  \if@filesw
+    \@tempa
+  \fi
+  \fi
+  \if@bidi@csundef{bidi@xpos@@start@\number\bidi@poscount}{%
+        \PackageWarningNoLine{biditools}{%
+          The start x position `\number\bidi@poscount' is not known yet.
+          Rerun to get this x position%
+          }%
+  }{}%
+}
+
+\newcommand*{\WriteEndXPostoaux}{%
+      \edef\@tempa{%
+        \write\@auxout{%
+          \string\bidi@pos{x}{end}{\number\bidi@poscount}{\noexpand\number\noexpand\pdflastxpos}%
+      }%
+    }%
+  \if@RTL
+    \if@filesw
+    \@tempa
+  \fi
+  \pdfsavepos
+  \else
+  \pdfsavepos
+  \if@filesw
+    \@tempa
+  \fi
+  \fi  
+  \if@bidi@csundef{bidi@xpos@@end@\number\bidi@poscount}{%
+          \PackageWarningNoLine{biditools}{%
+          The end x position `\number\bidi@poscount' is not known yet.
+          Rerun to get this x position%
+          }%
+  }{}%
+}
+
+\newcommand*{\WriteStartYPostoaux}{%
+  \global\advance\bidi@poscount\@ne
+    \edef\@tempa{%
+      \write\@auxout{%
+        \string\bidi@pos{y}{start}{\number\bidi@poscount}{\noexpand\number\noexpand\pdflastypos}%
+      }%
+    }%
+    \ifvmode
+      \leavevmode
+    \fi
+  \if@RTL
+       \if@filesw
+    \@tempa
+  \fi
+  \pdfsavepos
+    \else
+  \pdfsavepos
+  \if@filesw
+    \@tempa
+  \fi
+  \fi
+  \if@bidi@csundef{bidi@ypos@@start@\number\bidi@poscount}{%
+        \PackageWarningNoLine{biditools}{%
+          The start y position `\number\bidi@poscount' is not known yet.
+          Rerun to get this y position%
+          }%
+  }{}%
+}
+
+\newcommand*{\WriteEndYPostoaux}{%
+      \edef\@tempa{%
+        \write\@auxout{%
+          \string\bidi@pos{y}{end}{\number\bidi@poscount}{\noexpand\number\noexpand\pdflastypos}%
+      }%
+    }%
+  \if@RTL
+    \if@filesw
+    \@tempa
+  \fi
+  \pdfsavepos
+  \else
+  \pdfsavepos
+  \if@filesw
+    \@tempa
+  \fi
+  \fi  
+  \if@bidi@csundef{bidi@ypos@@end@\number\bidi@poscount}{%
+          \PackageWarningNoLine{biditools}{%
+          The end y position `\number\bidi@poscount' is not known yet.
+          Rerun to get this y position%
+          }%
+  }{}%
+}
+
+\newcommand*{\WriteStartXYPostoaux}{%
+  \global\advance\bidi@poscount\@ne
+    \edef\@tempa{%
+      \write\@auxout{%
+        \string\bidi@pos{x}{start}{\number\bidi@poscount}{\noexpand\number\noexpand\pdflastxpos}%
+      }%
+      \write\@auxout{%
+        \string\bidi@pos{y}{start}{\number\bidi@poscount}{\noexpand\number\noexpand\pdflastypos}%
+      }%
+    }%
+    \ifvmode
+      \leavevmode
+    \fi
+  \if@RTL
+       \if@filesw
+    \@tempa
+  \fi
+  \pdfsavepos
+    \else
+  \pdfsavepos
+  \if@filesw
+    \@tempa
+  \fi
+  \fi
+  \if@bidi@csundef{bidi@xpos@@start@\number\bidi@poscount}{%
+        \PackageWarningNoLine{biditools}{%
+          The start x position `\number\bidi@poscount' is not known yet.
+          Rerun to get this x position%
+          }%
+  }{}%
+  \if@bidi@csundef{bidi@ypos@@start@\number\bidi@poscount}{%
+        \PackageWarningNoLine{biditools}{%
+          The start y position `\number\bidi@poscount' is not known yet.
+          Rerun to get this y position%
+          }%
+  }{}%
+}
+
+\newcommand*{\WriteEndXYPostoaux}{%
+      \edef\@tempa{%
+        \write\@auxout{%
+          \string\bidi@pos{x}{end}{\number\bidi@poscount}{\noexpand\number\noexpand\pdflastxpos}%
+      }%
+        \write\@auxout{%
+          \string\bidi@pos{y}{end}{\number\bidi@poscount}{\noexpand\number\noexpand\pdflastypos}%
+      }%
+    }%
+  \if@RTL
+    \if@filesw
+    \@tempa
+  \fi
+  \pdfsavepos
+  \else
+  \pdfsavepos
+  \if@filesw
+    \@tempa
+  \fi
+  \fi  
+  \if@bidi@csundef{bidi@xpos@@end@\number\bidi@poscount}{%
+          \PackageWarningNoLine{biditools}{%
+          The end x position `\number\bidi@poscount' is not known yet.
+          Rerun to get this x position%
+          }%
+  }{}%
+  \if@bidi@csundef{bidi@ypos@@end@\number\bidi@poscount}{%
+          \PackageWarningNoLine{biditools}{%
+          The end y position `\number\bidi@poscount' is not known yet.
+          Rerun to get this y position%
+          }%
+  }{}%
+}
+
+\newcommand*{\currentposxwidth}{%  
+  \if@bidi@csundef{bidi@xpos@@end@\number\bidi@poscount}{\z@}
+  {%
+    \ifnum\csname bidi@xpos@@start@\number\bidi@poscount
+    \endcsname < \csname   bidi@xpos@@end@\number\bidi@poscount
+    \endcsname
+    \dimexpr \csname bidi@xpos@@end@\number\bidi@poscount
+    \endcsname sp - \csname   bidi@xpos@@start@\number\bidi@poscount
+    \endcsname sp\relax
+  \else
+    \dimexpr \csname bidi@xpos@@start@\number\bidi@poscount
+    \endcsname sp - \csname   bidi@xpos@@end@\number\bidi@poscount
+    \endcsname sp\relax
+  \fi
+  }%
+}
+
+\newcommand*{\currentposyheight}{%  
+  \if@bidi@csundef{bidi@ypos@@end@\number\bidi@poscount}{\z@}
+  {%
+    \dimexpr \csname bidi@ypos@@start@\number\bidi@poscount
+    \endcsname sp - \csname   bidi@ypos@@end@\number\bidi@poscount
+    \endcsname sp\relax
+  }%
+}
+
 
 
 \newcommand*{\setbaselineskip}[1]{%
