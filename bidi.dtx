@@ -5,7 +5,7 @@
 %<*readme>
 ___________________
 The bidi package
-v35.9
+v36
 
 This package provides a convenient interface for typesetting
 bidirectional texts in Plain TeX and LaTeX, using XeTeX engine.
@@ -21,12 +21,12 @@ In doing so, please always explain your issue well enough,
 and always include a minimal working example showing the 
 issue.
   
-Current version release date: 2019/06/14
+Current version release date: 2020/05/13
 
 ___________________
 Vafa Khalighi
 
-Copyright (c) 2007--2019
+Copyright (c) 2007--2020
 It may be distributed and/or modified under the LaTeX Project Public License,
 version 1.3c or higher (your choice). The latest version of
 this license is at: http://www.latex-project.org/lppl.txt
@@ -44,7 +44,7 @@ by Vafa Khalighi.
 \preamble
 
   __________________________________________________
-  Copyright (c) 2009--2019  Vafa Khalighi 
+  Copyright (c) 2009--2020  Vafa Khalighi 
 
   It may be distributed and/or modified under the LaTeX Project Public License,
   version 1.3c or higher (your choice). The latest version of
@@ -218,7 +218,7 @@ by Vafa Khalighi.
 \documentclass{ltxdoc}
 \input{bidi-doc-preamble.ltx}
 \hypersetup{%
-  pdftitle={Source documentation for version 35.9 of the bidi
+  pdftitle={Source documentation for version 36 of the bidi
                 package}%
 }
 \EnableCrossrefs
@@ -237,7 +237,7 @@ by Vafa Khalighi.
 % \GetFileInfo{\jobname.dtx}
 % \title{\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}\\
 %\LARGE Bidirectional typesetting in plain \TeX{} and \LaTeX, using \XeTeX{} engine\\[5pt]
-%\large Source documentation for \textcolor{blue!65!black}{version 35.9}}
+%\large Source documentation for \textcolor{blue!65!black}{version 36}}
 % \author{Vafa Khalighi}
 %\setcounter{page}{0}
 %\thispagestyle{empty}
@@ -247,7 +247,7 @@ by Vafa Khalighi.
 %\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}
 %
 %\Large
-%Source documentation for \textcolor{blue!65!black}{version 35.9}}
+%Source documentation for \textcolor{blue!65!black}{version 36}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -268,7 +268,7 @@ by Vafa Khalighi.
 %
 %\vskip 0pt plus 3fill
 %
-%Copyright (c) 2007--2019 Vafa Khalighi
+%Copyright (c) 2007--2020 Vafa Khalighi
 %
 %\medskip
 %Permission is granted to distribute and/or modify \emph{both the documentation and the code} under the conditions of the \LaTeX{} Project Public License, either version 1.3c of this license or (at your option) any later version.
@@ -1895,8 +1895,8 @@ by Vafa Khalighi.
 % \section{File \texttt{bidi.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\bididate{2019/06/14}
-\def\bidi@version{35.9}
+\def\bididate{2020/05/13}
+\def\bidi@version{36}
 \ProvidesPackage{bidi}[\bididate\space v\bidi@version\space
 Bidirectional typesetting in plain TeX and LaTeX]
 \edef\@bidi@info{****************************************************^^J%
@@ -1909,7 +1909,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 * and LaTeX.  The package includes adaptations^^J%
 * for use with many other commonly-used packages.^^J%
 * ^^J%
-* Copyright (c) 2009--2019 Vafa Khalighi^^J%
+* Copyright (c) 2009--2020 Vafa Khalighi^^J%
 * ^^J%
 * v\bidi@version, \bididate^^J%
 * ^^J%
@@ -1979,7 +1979,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \newcommand*{\@bidi@pdfcustomproperties}{%
   This is the bidi package, Version \bidi@version,
-  Released June 14, 2019. 
+  Released May 13, 2020. 
 }
 \@RTLmainfalse
 \AtBeginDocument{%
@@ -2221,9 +2221,9 @@ Bidirectional typesetting in plain TeX and LaTeX]
 %\fi
 % \section{File \texttt{bidi.tex}}
 %    \begin{macrocode}
-\def\bididate{2019/06/14}
+\def\bididate{2020/05/13}
 \catcode`@=11
-\def\bidi@version{35.9}
+\def\bidi@version{36}
 \let \protect \relax
 \newlinechar`\^^J
 \edef\@bidi@info{****************************************************^^J%
@@ -2236,7 +2236,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 * and LaTeX.  The package includes adaptations^^J%
 * for use with many other commonly-used packages.^^J%
 * ^^J%
-* Copyright (c) 2009--2019 Vafa Khalighi^^J%
+* Copyright (c) 2009--2020 Vafa Khalighi^^J%
 * ^^J%
 * v\bidi@version, \bididate^^J%
 * ^^J%
@@ -2320,7 +2320,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \def\@bidi@pdfcustomproperties{%
   This is the bidi package, Version \bidi@version,
-  Released June 14, 2019. 
+  Released May 13, 2020. 
 }
 \def\bidi@pdfm@mark{%
   \special{pdf:%
@@ -3081,7 +3081,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 % \section{File \texttt{biditools.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{biditools}[2018/12/11 v1.9 Programming tools for bidi package]
+\ProvidesPackage{biditools}[2020/05/13 v2 Programming tools for bidi package]
 \providecommand{\@bidi@saveprimitive}[2]{\begingroup\escapechar`\\\relax
   \edef\@tempa{\string#1}\edef\@tempb{\meaning#1}%
   \ifx\@tempa\@tempb \global\let#2#1%
@@ -3807,7 +3807,9 @@ ill-advised in the old versions of bidi package.%
 \bidi@newrobustcmd{\bidi@AtBeginEnvironment}[1]{%
   \bidi@csgappto{@bidi@begin@#1@hook}}
 
-\bidi@patchcmd\begin
+% Patch \begin<space> and \end<space> in newer LaTeX releases
+% \begin and \end in older ones.	 
+\expandafter\bidi@patchcmd\csname begin\ifcsname begin \endcsname\space\fi\endcsname
   {\csname #1\endcsname}
   {\bidi@csuse{@bidi@begin@#1@hook}%
    \csname #1\endcsname}
@@ -3821,7 +3823,7 @@ ill-advised in the old versions of bidi package.%
 \bidi@newrobustcmd{\bidi@AtEndEnvironment}[1]{%
   \bidi@csgappto{@bidi@end@#1@hook}}
 
-\bidi@patchcmd\end
+\expandafter\bidi@patchcmd\csname end\ifcsname end \endcsname\space\fi\endcsname
   {\csname end#1\endcsname}
   {\bidi@csuse{@bidi@end@#1@hook}%
    \csname end#1\endcsname}
@@ -3835,19 +3837,17 @@ ill-advised in the old versions of bidi package.%
 \bidi@newrobustcmd{\bidi@BeforeBeginEnvironment}[1]{%
   \bidi@csgappto{@bidi@beforebegin@#1@hook}}
 
-\bidi@pretocmd\begin
+\expandafter\bidi@pretocmd\csname begin\ifcsname begin \endcsname\space\fi\endcsname
   {\bidi@csuse{@bidi@beforebegin@#1@hook}}
   {}
   {\bidi@warning{%
      Patching '\string\begin' failed!\MessageBreak
      '\string\bidi@BeforeBeginEnvironment' will not work\@gobble}}
 
-
-
 \bidi@newrobustcmd{\bidi@AfterEndEnvironment}[1]{%
   \bidi@csgappto{@bidi@afterend@#1@hook}}
 
-\bidi@patchcmd\end
+\expandafter\bidi@patchcmd\csname end\ifcsname end \endcsname\space\fi\endcsname
   {\if@ignore}
   {\bidi@csuse{@bidi@afterend@#1@hook}%
    \if@ignore}
@@ -16207,7 +16207,7 @@ bidi implementation of tufte title]
 %\fi
 % \section{File \texttt{pdfbase-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{pdfbase-xetex-bidi.def}[2018/09/29 v0.2 bidi adaptations for pdfbase package for XeTeX engine]
+\ProvidesFile{pdfbase-xetex-bidi.def}[2020/05/13 v0.3 bidi adaptations for pdfbase package for XeTeX engine]
 \ExplSyntaxOn
 \cs_set_eq:NN\pbs_outputpage_orig:\@outputpage
 \cs_set_nopar:Npn\@outputpage{
@@ -16223,12 +16223,12 @@ bidi implementation of tufte title]
   \hbox_set:Nn\@outputbox{
     %begin of page
     \hbox_overlap_right:n{\seq_map_inline:Nn\g_pbs_bop_seq{##1}}
-    \box_use_clear:N\@outputbox
+    \box_use_drop:N\@outputbox
     %end of page
     \hbox_overlap_right:n{\seq_map_inline:Nn\g_pbs_eop_seq{##1}}
   }
   \bool_if:NT\l_pbs_is_vertical_bool{
-    \vbox_set:Nn\@outputbox{\box_use_clear:N\@outputbox}
+    \vbox_set:Nn\@outputbox{\box_use_drop:N\@outputbox}
   }
   \pbs_outputpage_orig:
 }
