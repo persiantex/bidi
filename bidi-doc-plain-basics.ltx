@@ -1,0 +1,134 @@
+\documentclass{ltxdoc}
+\input{bidi-doc-preamble.ltx}
+\begin{document}
+\section{Basics}
+\subsection{Loading The Package}
+You can load the package in the ordinary way;
+\begin{BDef}
+\Lcs{input} \Larg{bidi}
+\end{BDef}
+
+When loading the package, it is important to know that:
+\textsf{bidi} should be the last package that you load, because otherwise you are certainly going to overwrite \textsf{bidi}'s definitions and consequently, you will not get the expected output.
+\subsection{Commands for Version number, and Date of The Package}
+\begin{BDef}
+\Lcs{bidiversion}\quad\Lcs{bididate}
+\end{BDef}
+\begin{itemize}
+\item \Lcs{bidiversion} gives the current version of the package.
+\item \Lcs{bididate} gives the current date of the package.
+\end{itemize}
+\begin{lstlisting}
+\input bidi
+This is typeset by \textsf{bidi} package, \bidiversion, \bididate.
+\end
+\end{lstlisting}
+\subsection{Turning TeX-{-}XeT features on and off}
+The bidirectional typesetting in \XeTeX{} is based on TeX-{-}XeT algorithm and \textsf{bidi} package automatically turns the feature on for typesetting bidirectional texts. As the internal data structures built by TeX-{-}XeT differ from those built by \TeX,  the typesetting of a document by TeX-{-}XeT may therefore differ from that performed by \TeX. So you may notice that some packages behave differently when TeX-{-}XeT  feature is on and you may want to turn the feature off for a part of the text so that you get the default behaviour of original \TeX. Two commands are provided for this purpose:
+\begin{BDef}
+\Lcs{TeXXeTOn}\quad\Lcs{TeXXeTOff}
+\end{BDef}
+\begin{itemize}
+\item \Lcs{TeXXeTOn} turns TeX-{-}XeT  feature on, which is active by default when \textsf{bidi} package is loaded.
+\item \Lcs{TeXXeTOff} turns TeX-{-}XeT  feature off.
+\end{itemize}
+\subsection{Paragraph Switching Commands\label{PSC}}
+\begin{BDef}
+\Lcs{setLTR}\quad\Lcs{setLR}\quad\Lcs{unsetRL}\quad\Lcs{unsetRTL}\\
+\Lcs{setRTL}\quad\Lcs{setRL}\quad\Lcs{unsetLTR}
+\end{BDef}
+\begin{itemize}
+\item With any of the commands in the first row, you can typeset LTR paragraphs.
+\item With any of the commands in the second row, you can typeset RTL paragraphs.
+\end{itemize}
+\begin{lstlisting}[morekeywords={newfontfamily,Parsifont}]
+\input bidi
+\setRTL%
+Anyone who reads Old and Middle English literary texts will be
+ familiar with the mid-brown volumes of the EETS, with the symbol
+ of Alfred's jewel embossed on the front cover.
+
+\setLTR% Notice the blank line before \setLTR
+Anyone who reads Old and Middle English literary texts will be
+ familiar with the mid-brown volumes of the EETS, with the symbol
+ of Alfred's jewel embossed on the front cover.
+\end
+\end{lstlisting}
+\subsection{Pargraph Switching Environments}
+\begin{BDef}
+\Lcs{LTR}\quad\Larga{text}\quad\Lcs{endLTR}\\
+\Lcs{RTL}\quad\Larga{text}\quad\Lcs{endRTL}
+\end{BDef}
+\begin{itemize}
+\item With \texttt{LTR} environment, you can typeset LTR paragraphs.
+\item With \texttt{RTL} environment, you can typeset RTL paragraphs.
+\end{itemize}
+\begin{lstlisting}[morekeywords={RTL,endRTL,LTR,endLTR}]
+\input bidi
+\RTL
+Anyone who reads Old and Middle English literary texts will be familiar
+ with the mid-brown volumes of the EETS, with the symbol
+ of Alfred's jewel embossed on the front cover.
+\LTR
+Anyone who reads Old and Middle English literary texts will be familiar
+ with the mid-brown volumes of the EETS, with the symbol
+ of Alfred's jewel embossed on the front cover.
+\endLTR
+And we are still typesetting right to left.
+\endRTL
+\end
+\end{lstlisting}
+\subsection{Typesetting Short LTR and RTL Texts}
+\begin{BDef}
+\Lcs{LRE}\Largb{\Larga{text}}\quad\Lcs{LR}\Largb{\Larga{text}}\\
+\Lcs{RLE}\Largb{\Larga{text}}\quad\Lcs{RL}\Largb{\Larga{text}}
+\end{BDef}
+\begin{itemize}
+\item With any of the commands in the first row, you can typeset short LTR text inside RTL paragraphs.
+\item With any of the commands in the second row, you can typeset short RTL text inside LTR paragraphs.
+\end{itemize}
+\begin{lstlisting}[morekeywords={RTL,endRTL,LTR,endLTR}]
+\input bidi
+\RTL
+Anyone who reads Old and Middle English \LRE{Short left to right text} literary texts will be familiar
+ with the mid-brown volumes of the EETS, with the symbol
+ of Alfred's jewel embossed on the front cover.
+\LTR
+Anyone who reads Old and Middle English \RLE{Short right to left text} literary texts will be familiar
+ with the mid-brown volumes of the EETS, with the symbol
+ of Alfred's jewel embossed on the front cover.
+\endLTR
+\endRTL
+\end
+\end{lstlisting}
+\subsection{Primitive-like commands}
+\begin{BDef}
+\Lcs{hboxR}\quad\Lcs{hboxL}\quad\Lcs{vboxR}\quad\Lcs{vboxL}
+\end{BDef}
+\begin{itemize}
+\item The syntax of \Lcs{hboxR} is exatly the same as the syntax of \Lcs{hbox}, but its contents is always typeset RTL.
+\item  The syntax of \Lcs{hboxL} is exatly the same as the syntax of \Lcs{hbox}, but its contents is always typeset LTR.
+\item The syntax of \Lcs{vboxR} is exatly the same as the syntax of \Lcs{vbox}, but its contents is always typeset RTL.
+\item The syntax of \Lcs{vboxL} is exatly the same as the syntax of \Lcs{vbox}, but its contents is always typeset LTR.
+\end{itemize}
+\subsection{Something To know about \Lcs{hbox}}
+If you enable RTL typesetting and  typeset an horizontal box at the beginning of the document:
+\begin{lstlisting}
+\input bidi
+\setRTL
+\hbox{This is a Test}
+\end
+\end{lstlisting}
+You see that even you  have used \Lcs{setRTL}, the horizontal box appears LTR (It appears on the left hand side and its content is typeset left to right). This is because when \TeX{} starts, it is in the vertical mode so if you need to have that \Lcs{hbox} appear RTL, then write \Lcs{leavevmode} before \Lcs{hbox}:
+\begin{lstlisting}
+\input bidi
+\setRTL
+\leavevmode\hbox{This is a Test}
+\end
+\end{lstlisting}
+\subsection{Typesetting Logos}
+\begin{BDef}
+\Lcs{XeTeX}
+\end{BDef}
+\textsf{bidi} defines \XeTeX\  logo and in addition, it makes sure that the logo, \TeX\  is typeset LTR.
+\end{document}

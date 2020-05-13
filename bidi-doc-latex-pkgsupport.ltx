@@ -1,0 +1,49 @@
+\documentclass{ltxdoc}
+\input{bidi-doc-preamble.ltx}
+\begin{document}
+\section{Support For Various Packages and Classes}
+The \textsf{bidi} package supports \textsf{amsmath}, \textsf{amstext}, \textsf{amsthm}, \textsf{array}, \textsf{arydshln}, \textsf{breqn}, \textsf{cals}, \textsf{caption}, \textsf{color}, \textsf{colortbl}, \textsf{crop}, \textsf{cuted}, \textsf{cutwin}, \textsf{dblfnote} \textsf{draftwatermark}, \textsf{empheq},   \textsf{fancyhdr}, \textsf{fancybox}, \textsf{fix2col}, \textsf{float}, \textsf{floatrow}, \textsf{flowfram}, \textsf{framed}, \textsf{ftnright}, \textsf{geometry}, \textsf{graphicx}, \textsf{hvfloat},  \textsf{hyperref}, \textsf{lettrine}, \textsf{listings}, \textsf{mdframed}, \textsf{midfloat}, \textsf{minitoc}, \textsf{multicol}, \textsf{multienum}, \textsf{newfloat}, \textsf{pdfpages}, \textsf{pstricks}, \textsf{quotchap}, \textsf{picinpar}, \textsf{ragged2e}, \textsf{rotating},  \textsf{sidecap}, \textsf{stabular}, \textsf{subfig}, \textsf{subfigure}, \textsf{supertabular}, \textsf{xtab}, \textsf{tabls}, \textsf{tabulary}, \textsf{PGF \&\ TIKZ}, \textsf{tocbibind}, \textsf{tocloft}, \textsf{tocstyle}, \textsf{wrapfig}, \textsf{xcolor}, \textsf{xltxtra} packages, \textsf{amsart}, \textsf{amsbook}, \textsf{artikel1}, \textsf{artikel2}, \textsf{artikel3}, \textsf{extarticle}, \textsf{flashcards}, \textsf{standrad article}, \textsf{boek}, \textsf{boek3}, \textsf{standard book}, \textsf{bookest}, \textsf{extbook}, \textsf{extletter}, \textsf{scrlettr},\textsf{standard letter}, \textsf{memoir}, \textsf{extreport}, \textsf{rapport1},  \textsf{rapport3}, \textsf{refrep}, \textsf{standard report}, \textsf{scrartcl}, \textsf{scrbook}, \textsf{scrreprt} classes and any other packages and classes that relies on these packages and classes. This means, you can use all these packages and classes in addition to other packages and classes that rely on these packages and classes and use their functionality fully for your bidirectional documents. 
+
+We now give some details that you should know about the supported packages or classes.
+\subsection{Color}
+You can use \textsf{color} and \textsf{xcolor} packages to typeset texts in colours and colour boxes produced by \Lcs{colorbox} and \Lcs{fcolorbox} commands. Please note that your Coloured text should not span more than a line, if your text  spans more than a line, you will be in trouble which means your whole document, page or paragraph may be coloured. If your texts spans more than a line, then you should use \textsf{xecolor} package.
+
+Also if you are going to use \Lcs{color} command to colour the text at the beginning of a paragraph, then you should have \Lcs{leavevmode} before \Lcs{color} command.
+
+For having coloured tabular, you can use \textsf{colortbl} package.
+\subsection{The \textsf{dblfnote} package}
+The \textsf{dblfnote} package makes footnotes double-columned. In addition \textsf{bidi} package adds bidirectional support for the \textsf{dblfnote} package by providing the following commands:
+\begin{BDef}
+\Lcs{RTLdfnmakecol}\qquad\Lcs{LTRdfnmakecol}
+\end{BDef}
+\begin{itemize}
+\item \Lcs{RTLdfnmakecol}  makes footnotes double-columned RTL.
+\item \Lcs{LTRdfnmakecol} makes footnotes double-columned LTR.
+\item If the main direction of the document is RTL, \Lcs{RTLdfnmakecol} is active and if the main direction of the document is LTR, \Lcs{LTRdfnmakecol} is active.
+\end{itemize}
+ Please note that when using \textsf{dblfnote} package, the footnote rule will be as wide as the footnote column and \Lcs{autofootnoterule}, \Lcs{rightfootnoterule}, \Lcs{leftfootnoterule}, and \Lcs{textwidthfootnoterule} commonds have no effects.
+\subsection{Hyperref}
+The \textsf{hyperref} package works fine with bidirectional documents if and only if, your link will not span more than a line. If your link spans more than a line, then your whole document, or page or paragraph may be linked.
+
+
+\subsection{The \textsf{listings} package}
+ Suppose that the main direction of the document is RTL, and you want to typeset a piece of C code in LTR mode but you also have the requirement that the caption of that particular code should be RTL. Since the direction of the code is LTR, then the direction of the caption also will be LTR and this is not something you want; sadly there is no easy way to do this. For this very reason, the \textsf{bidi} package adds a key to the \textsf{listings} package, namely \texttt{captiondirection}. This key can have the following values:
+\begin{itemize}
+\item \texttt{textdirection} follows the direction of the text (default).
+\item \texttt{RTL} sets the direction of the caption to RTL.
+\item \texttt{LTR} sets the direction of the caption to LTR.
+\end{itemize}
+ Giving any other values gives you an error.
+
+
+\subsection{\textsf{flowfram} Package}
+You can use \textsf{flowfram} package for your bidirectional documents. Please note that \textsf{flowfram} package provides support for bidirectional column typesetting, for details, see its manual.
+\subsection{Multicolumn Typesetting}
+In the previous versions of \textsf{bidi} package, it was recommended that you need to use \textsf{fmultico} package instead the original \textsf{multicol} package for RTL multicolumn typesetting. This is not the case any more and you should not use buggy \textsf{fmultico} package any more. Simply load the original \textsf{multicol} package before loading \textsf{bidi}. \textsf{bidi} now supports \textsf{multicol} package and you can typeset bidirectional multi columns. When using \textsf{multicol} package, the following two additional commands are proveded:
+\begin{BDef}
+\Lcs{RTLmulticolcolumns}\quad\Lcs{LTRmulticolcolumns}
+\end{BDef}
+If  the main direction of the document is RTL, then you get RTL multi columns and if the main direction of the document is LTR, then you get LTR multi columns. In addition, \Lcs{RTLmulticolcolumns} allows you to have RTL multi columns  and \Lcs{LTRmulticolcolumns} allows you to have LTR multi columns.
+
+In addition, you also can use \textsf{vwcol} package for variable width bidirectional column typesetting.
+\end{document}

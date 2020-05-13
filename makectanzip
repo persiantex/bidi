@@ -1,0 +1,19 @@
+#! /bin/sh
+chmod -x *.pdf *.jpg *.ltx bidi.dtx
+xelatex -shell-escape bidi.dtx
+xelatex -shell-escape bidi.dtx
+xelatex -shell-escape bidi.dtx
+xelatex -shell-escape bidi-doc.ltx
+xelatex -shell-escape bidi-doc.ltx
+xelatex -shell-escape bidi-doc.ltx
+mkdir -p doc/xelatex/bidi source/xelatex/bidi tex/xelatex/bidi 
+mkdir bidi
+mv *.sty *.cls *.def  bidi.tex bibitem.pdf bidi-logo.pdf tex/xelatex/bidi
+mv *.pdf *.jpg *.tex README  doc/xelatex/bidi
+mv *.ltx bidi.dtx bidi.ins source/xelatex/bidi
+zip -r bidi-tds doc/xelatex/bidi source/xelatex/bidi tex/xelatex/bidi 
+mv bidi-tds.zip bidi.tds.zip
+mv doc/xelatex/bidi/*.pdf doc/xelatex/bidi/*.jpg doc/xelatex/bidi/README source/xelatex/bidi/*.ltx source/xelatex/bidi/bidi.dtx tex/xelatex/bidi/bibitem.pdf bidi
+zip -r bidi bidi.tds.zip bidi
+rm -r doc source tex bidi
+rm *.idx *.out *.toc *.gls *.ilg *.ind *.glo *.hd *.aux *.log bidi.tds.zip

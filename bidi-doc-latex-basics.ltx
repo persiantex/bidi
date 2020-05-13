@@ -1,0 +1,409 @@
+\documentclass{ltxdoc}
+\input{bidi-doc-preamble.ltx}
+\begin{document}
+\section{Basics}
+\subsection{Loading The Package}
+You can load the package in the ordinary way;
+\begin{BDef}
+\Lcs{usepackage}\OptArgs\Largb{bidi}
+\end{BDef}
+Where \texttt{options} of the package are explained later in \autoref{options}.
+
+When loading the package, it is important to know that:
+\begin{enumerate}
+\item \textsf{bidi} should be the last package that you load, because otherwise you are certainly going to overwrite \textsf{bidi}'s definitions and consequently, you will not get the expected output.
+\item In fact, \textsf{bidi} makes sure that some specific packages are loaded before \textsf{bidi}; these are those packages that \textsf{bidi} modifies them for bidirectional typesetting. 
+
+If you load \textsf{bidi} before any of these packages, then you will get an error saying that you should load \textsf{bidi} as your last package.
+
+For instance, consider the following minimal example:
+\begin{lstlisting}
+\documentclass{minimal}
+\usepackage{bidi}
+\usepackage{graphicx}
+\begin{document}
+This is just a test.
+\end{document}
+\end{lstlisting}
+Where \textsf{graphicx} is loaded after \textsf{bidi}. If you run \texttt{xelatex} on this document, you will get an error which looks like this:
+\begin{lstlisting}[backgroundcolor=\color{blue!20},numbers=none,frame=none,framexleftmargin=1mm]
+! Package bidi Error: Oops! you have loaded package graphicx after bidi package. Please load package graphicx before bidi package, and then try to run xelatex on your document again.
+
+See the bidi package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4 \begin{document}
+                    
+? 
+
+\end{lstlisting}
+\end{enumerate}
+\subsection{\textsf{bidi}'s Symbol}
+ As you may know lion symbolizes \TeX{} but lion does not symbolizes \textsf{bidi}. \textbf{Simorgh}\footnote{\textbf{Simorgh} is an Iranian benevolent, mythical flying creature which has been shown on the titlepage of this documentation. For more details see \url{http://en.wikipedia.org/wiki/Simurgh}} (shown on the first page of this documentation) symbolizes \textsf{bidi}.
+\subsection{Commands for Version number, and Date of The Package}
+\begin{BDef}
+\Lcs{bidiversion}\quad\Lcs{bididate}
+\end{BDef}
+\begin{itemize}
+\item \Lcs{bidiversion} gives the current version of the package.
+\item \Lcs{bididate} gives the current date of the package.
+\end{itemize}
+\begin{lstlisting}
+\documentclass{article}
+\usepackage{bidi}
+\begin{document}
+This is typeset by \textsf{bidi} package, \bidiversion, \bididate.
+\end{document}
+\end{lstlisting}
+\subsection{Turning TeX-{-}XeT features on and off}
+The bidirectional typesetting in \XeTeX{} is based on TeX-{-}XeT algorithm and \textsf{bidi} package automatically turns the feature on for typesetting bidirectional texts. As the internal data structures built by TeX-{-}XeT differ from those built by \TeX,  the typesetting of a document by TeX-{-}XeT may therefore differ from that performed by \TeX. So you may notice that some packages behave differently when TeX-{-}XeT  feature is on and you may want to turn the feature off for a part of the text so that you get the default behaviour of original \TeX. Two commands are provided for this purpose:
+\begin{BDef}
+\Lcs{TeXXeTOn}\quad\Lcs{TeXXeTOff}
+\end{BDef}
+\begin{itemize}
+\item \Lcs{TeXXeTOn} turns TeX-{-}XeT  feature on, which is active by default when \textsf{bidi} package is loaded.
+\item \Lcs{TeXXeTOff} turns TeX-{-}XeT  feature off.
+\end{itemize}
+\subsection{Options of The Package\label{options}}
+There are three options, namely \texttt{RTLdocument} and \texttt{rldocument}, which are essentialy equivalent. If you pass any of these options to the package, you will be typesetting a document containing mainly RTL texts with some LTR texts. These options activate \Lcs{setRTL} (explained in \autoref{PSC}), \Lcs{RTLdblcol} (explained in \autoref{twocolumn}) and \Lcs{autofootnoterule} (explained in \autoref{footnoterule}).
+
+It is clear that if you do not pass any of these options to the package, you will be typesetting a document containing mainly LTR texts with some RTL texts.
+
+There is also \texttt{extrafootnotefeatures} option that allows footnotes to be typeset in different formats:
+\begin{BDef}
+\Lcs{normalfootnotes}\\
+\Lcs{twocolumnfootnotes}\quad\Lcs{threecolumnfootnotes}\quad\Lcs{fourcolumnfootnotes}\\
+\Lcs{fivecolumnfootnotes}\quad\Lcs{sixcolumnfootnotes}\quad\Lcs{sevencolumnfootnotes}\\
+\Lcs{eightcolumnfootnotes}\quad\Lcs{ninecolumnfootnotes}\quad\Lcs{tencolumnfootnotes}\\
+\Lcs{RTLcolumnfootnotes}\quad\Lcs{LTRcolumnfootnotes}\\
+\Lcs{paragraphfootnotes}\\
+\Lcs{setLTRparagraphfootnotes}\quad\Lcs{setRTLparagraphfootnotes}
+\end{BDef}
+\begin{itemize}
+\item \Lcs{normalfootnotes} typesets footnotes in Standard \LaTeX{} format.
+\item \Lcs{twocolumnfootnotes} to \Lcs{tencolumnfootnotes}, typeset footnotes in two-columns to ten-columns, respectively.
+\item \Lcs{RTLcolumnfootnotes} typesets footnotes columns RTL (first column on the RHS and each next column to the left of the previous column) and \Lcs{LTRcolumnfootnotes} typesets footnotes columns LTR (first column on the LHS and each next column to the right of the previous column).  \Lcs{LTRcolumnfootnotes} is active by default.
+\item \Lcs{paragraphfootnotes} typesets footnotes in paragraph format.
+\item \Lcs{setLTRparagraphfootnotes} makes footnotes run from left to right. This comand is active by default.
+\item \Lcs{setRTLparagraphfootnotes} makes footnotes run from right to left.
+\end{itemize}
+ Please note that when using \texttt{extrafootnotefeatures} option, the footnote rule will be as wide as the text width and \Lcs{autofootnoterule}, \Lcs{rightfootnoterule}, \Lcs{leftfootnoterule}, and \Lcs{textwidthfootnoterule} commands have no effects.
+
+
+
+ Please also note that if you redefine \Lcs{baselinestretch} command or change the value of \Lcs{baselineskip} primitive before \Lcs{paragraphfootnotes} command, then you may get Arithmetic Overflow error. You should change these after using \Lcs{paragraphfootnotes} command.
+\subsection{Paragraph Switching Commands\label{PSC}}
+\begin{BDef}
+\Lcs{setLTR}\quad\Lcs{setLR}\quad\Lcs{unsetRL}\quad\Lcs{unsetRTL}\\
+\Lcs{setRTL}\quad\Lcs{setRL}\quad\Lcs{unsetLTR}
+\end{BDef}
+\begin{itemize}
+\item With any of the commands in the first row, you can typeset LTR paragraphs.
+\item With any of the commands in the second row, you can typeset RTL paragraphs.
+\end{itemize}
+\begin{lstlisting}[morekeywords={newfontfamily,Parsifont}]
+\documentclass{article}
+\usepackage{bidi}
+\begin{document}
+\setRTL%
+Anyone who reads Old and Middle English literary texts will be
+ familiar with the mid-brown volumes of the EETS, with the symbol
+ of Alfred's jewel embossed on the front cover.
+
+\setLTR% Notice the blank line before \setLTR
+Anyone who reads Old and Middle English literary texts will be
+ familiar with the mid-brown volumes of the EETS, with the symbol
+ of Alfred's jewel embossed on the front cover.
+\end{document}
+\end{lstlisting}
+\subsection{Pargraph Switching Environments}
+\begin{BDef}
+\LBEG{LTR}\quad\Larga{text}\quad\LEND{LTR}\\
+\LBEG{RTL}\quad\Larga{text}\quad\LEND{RTL}
+\end{BDef}
+\begin{itemize}
+\item With \texttt{LTR} environment, you can typeset LTR paragraphs.
+\item With \texttt{RTL} environment, you can typeset RTL paragraphs.
+\end{itemize}
+\begin{lstlisting}
+\documentclass{article}
+\usepackage{bidi}
+\begin{document}
+\begin{RTL}
+Anyone who reads Old and Middle English literary texts will be familiar
+ with the mid-brown volumes of the EETS, with the symbol
+ of Alfred's jewel embossed on the front cover.
+\begin{LTR}
+Anyone who reads Old and Middle English literary texts will be familiar
+ with the mid-brown volumes of the EETS, with the symbol
+ of Alfred's jewel embossed on the front cover.
+\end{LTR}
+And we are still typesetting RTL.
+\end{RTL}
+\end{document}
+\end{lstlisting}
+\subsection{Typesetting Short LTR and RTL Texts}
+\begin{BDef}
+\Lcs{LRE}\Largb{\Larga{text}}\quad\Lcs{LR}\Largb{\Larga{text}}\\
+\Lcs{RLE}\Largb{\Larga{text}}\quad\Lcs{RL}\Largb{\Larga{text}}
+\end{BDef}
+\begin{itemize}
+\item With any of the commands in the first row, you can typeset short LTR text inside RTL paragraphs.
+\item With any of the commands in the second row, you can typeset short RTL text inside LTR paragraphs.
+\end{itemize}
+\begin{lstlisting}
+\begin{document}
+\begin{RTL}
+Anyone who reads Old and Middle English \LRE{Short LTR text} literary texts will be familiar
+ with the mid-brown volumes of the EETS, with the symbol
+ of Alfred's jewel embossed on the front cover.
+\begin{LTR}
+Anyone who reads Old and Middle English \RLE{Short RTL text} literary texts will be familiar
+ with the mid-brown volumes of the EETS, with the symbol
+ of Alfred's jewel embossed on the front cover.
+\end{LTR}
+\end{RTL}
+\end{document}
+\end{lstlisting}
+\subsection{Footnotes}
+\begin{BDef}
+\Lcs{footnote}\OptArg{num}\Largb{\Larga{text}}\quad\Lcs{LTRfootnote}\OptArg{num}\Largb{\Larga{text}}\quad\Lcs{RTLfootnote}\OptArg{num}\Largb{\Larga{text}}\\
+\Lcs{setfootnoteRL}\quad\Lcs{setfootnoteLR}\quad\Lcs{unsetfootnoteRL}\\
+\Lcs{thanks}\Largb{\Larga{text}}\quad\Lcs{LTRthanks}\Largb{\Larga{text}}\quad\Lcs{RTLthanks}\Largb{\Larga{text}}
+\end{BDef}
+\begin{itemize}
+\item \Lcs{footnote} in RTL mode produces an RTL footnote while in LTR mode it produces an LTR footnote.
+\item \Lcs{LTRfootnote} will always produce an LTR footnote, independent on the current mode.
+\item \Lcs{RTLfootnote} will always produce an RTL footnote, independent on the current mode.
+\item Specifying a \Lcs{setfootnoteRL} command anywhere will make \Lcs{footnote} produce an RTL footnote.
+\item Specifying either a \Lcs{setfootnoteLR} or an \Lcs{unsetfootnoteRL} command anywhere will make \Lcs{footnote} produce an LTR footnote.
+\item \Lcs{thanks} (to be used only inside \Lcs{author} or \Lcs{title} argument) in RTL mode produces an RTL footnote while in LTR mode it produces an LTR footnote.
+\item \Lcs{LTRthanks} (to be used only inside \Lcs{author} or \Lcs{title} argument) will always produce an LTR footnote, independent on the current mode.
+\item \Lcs{RTLthanks} (to be used only inside \Lcs{author} or \Lcs{title} argument) will always produce an RTL footnote, independent on the current mode.
+\end{itemize}
+\begin{BDef}
+\Lcs{footnotetext}\OptArg{num}\Largb{\Larga{text}}\quad\Lcs{LTRfootnotetext}\OptArg{num}\Largb{\Larga{text}}\\
+\Lcs{RTLfootnotetext}\OptArg{num}\Largb{\Larga{text}}
+\end{BDef}
+\begin{itemize}
+\item \Lcs{footnotetext} used in conjunction with \Lcs{footnotemark},  in RTL mode produces an RTL footnote while in LTR mode it produces an LTR footnote.
+\item \Lcs{LTRfootnotetext} used in conjunction with \Lcs{footnotemark}, will always produce an LTR footnote, independent on the current mode.
+\item \Lcs{RTLfootnotetext} used in conjunction with \Lcs{footnotemark}, will always produce an RTL footnote, independent on the current mode.
+\end{itemize}
+\subsubsection{Footnote Rule\label{footnoterule}}
+The behavior of footnote rules can also be controlled.
+\begin{BDef}
+\Lcs{autofootnoterule}\quad\Lcs{rightfootnoterule}\quad\Lcs{leftfootnoterule}\\
+\Lcs{LRfootnoterule}\quad\Lcs{textwidthfootnoterule}\quad\Lcs{SplitFootnoteRule}\\
+\Lcs{debugfootnotedirection}
+\end{BDef}
+\begin{itemize}
+\item \Lcs{autofootnoterule} will draw the footnote rule right or left aligned based on the direction of the first footnote following the rule (i.e., put in the current page).
+\item \Lcs{rightfootnoterule} will put footnote rule on the right-hand side.
+\item \Lcs{leftfootnoterule} or \Lcs{LRfootnoterule} will put footnote rule on the left-hand side.
+\item \Lcs{textwidthfootnoterule} will draw the footnote rule with a width equal to \Lcs{textwidth}.
+\item \Lcs{SplitFootnoteRule} puts a full-width rule above the split-off part of a split footnote.
+\item \Lcs{debugfootnotedirection} writes the direction of the first footnote on each page, in the log file.
+\end{itemize}
+\subsection{Two Column Typesetting\label{twocolumn}}
+\begin{BDef}
+\Lcs{RTLdblcol}\quad\Lcs{LTRdblcol}
+\end{BDef}
+If you pass the \texttt{twocolumn} option to the class file and if the main direction of the document is RTL, then you get RTL two column and if the main direction of the document is LTR, then you get LTR two column. In addition, \Lcs{RTLdblcol} allows you to have RTL two column typesetting and \Lcs{LTRdblcol} allows you to have LTR two column typesetting as the options of the class file.
+
+Also please note that in \texttt{twocolumn} documents, the width of the \Lcs{footnoterule} will be equal to \Lcs{columnwidth} no matter which footnote-rule commands you use; indeed, in \texttt{twocolumn} documents only \Lcs{textwidthfootnoterule} is active and other footnote-rule commands will not be effective.
+\subsection{RTL cases}
+\marginpar{\Lcs{RTLcases} command was previously known as \Lcs{rcases} command but since there was a clash with \textsf{mathtools} package (mathtools defines \textsf{rcases} environment), we had to rename \Lcs{rcases} command to \Lcs{RTLcases} command.}
+\begin{BDef}
+\Lcs{RTLcases}\Largb{\Lcs{text}\Largb{\Larga{brach1}}\Lcs{cr}\Lcs{text}\Largb{\Larga{brach2}}\Lcs{cr}%
+\Lcs{text}\Largb{\Larga{brach3}}\ldots}\\
+\Lcs{text}\Largb{\Larga{main}}
+\end{BDef}
+\Lcs{RTLcases} is defined in bidi for typesetting RTL cases. \Lcs{text} is defined in \textsf{amsmath} package, so this means that you need to load \textsf{amsmath} package too.
+\begin{lstlisting}[morekeywords={RTLcases,text}]
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{bidi}
+\begin{document}
+\setRTL
+\[\RTLcases{\text{men}\cr\text{women}}
+\text{Humans Beings}
+\]
+\end{document}
+\end{lstlisting}
+\subsection{Typesetting Logos}
+\begin{BDef}
+\Lcs{XeTeX}\quad\Lcs{XeLaTeX}
+\end{BDef}
+\textsf{bidi} defines \XeTeX\ and \XeLaTeX\ logos and in addition, it makes sure that logos, \TeX, \LaTeX, \LaTeXe\ are typeset LTR.
+\subsection{Separation Mark}
+\begin{BDef}
+\Lcs{SepMark}\Largb{\Larga{mark}}\quad\Lcs{@SepMark}
+\end{BDef}
+Generally in Standard \LaTeX, dot is used for separation between section numbers, equation numbers any anything else which needs to be seperated. You can use \Lcs{SepMark} to use any other mark as the seperation mark instead a dot.
+\begin{lstlisting}[morekeywords={SepMark,subsection,subsubsection}]
+\documentclass{article}
+\usepackage{bidi}
+\SepMark{-}
+\begin{document}
+\section{First}
+\subsection{Second}
+\subsubsection{Third}
+\end{document}
+\end{lstlisting}
+
+If you decide to change the numbering of chapters, sections, subsections, equations, figures and \ldots, you should either load \textsf{amsmath} package and use \Lcs{numberwithin} macro to do this or do the ordinary way, but instead dot write \Lcs{@SepMark}. Using dot instead \Lcs{@SepMark} will certainly make trouble.
+
+\begin{lstlisting}[morekeywords={theequation,thesection,SepMark}]
+\documentclass{article}
+\usepackage{bidi}
+\SepMark{-}
+\makeatletter
+\renewcommand\theequation{\thesection\@SepMark\@arabic\c@equation}
+\makeatother
+\begin{document}
+\section{First}
+\begin{equation}
+x^2+y^2=z^2
+\end{equation}
+\end{document}
+\end{lstlisting}
+\subsection{\Lcs{raggedright}, \Lcs{raggedleft} commands, \texttt{flushleft} and \texttt{flushright} Environments}
+\Lcs{raggedright} command and \texttt{flushleft} environment put the text on the left hand side and \Lcs{raggedleft} command and \texttt{flushright} environment put the text on the right hand side, independent on the current mode.
+\subsection{Primitive-like commands}
+\begin{BDef}
+\Lcs{hboxR}\quad\Lcs{hboxL}\quad\Lcs{vboxR}\quad\Lcs{vboxL}
+\end{BDef}
+\begin{itemize}
+\item The syntax of \Lcs{hboxR} is exatly the same as the syntax of \Lcs{hbox}, but its contents is always typeset RTL.
+\item  The syntax of \Lcs{hboxL} is exatly the same as the syntax of \Lcs{hbox}, but its contents is always typeset LTR.
+\item The syntax of \Lcs{vboxR} is exatly the same as the syntax of \Lcs{vbox}, but its contents is always typeset RTL.
+\item The syntax of \Lcs{vboxL} is exatly the same as the syntax of \Lcs{vbox}, but its contents is always typeset LTR.
+\end{itemize}
+\subsection{Something To know about \Lcs{hbox}}
+If you enable RTL typesetting and  typeset an horizontal box at the beginning of the document:
+\begin{lstlisting}
+\documentclass{article}
+\usepackage{bidi}
+\setRTL
+\begin{document}
+\hbox{This is a Test}
+\end{document}
+\end{lstlisting}
+You see that even you  have used \Lcs{setRTL}, the horizontal box appears LTR (It appears on the left hand side and its content is typeset left to right). This is because when \TeX{} starts, it is in the vertical mode so if you need to have that \Lcs{hbox} appear RTL, then write \Lcs{leavevmode} before \Lcs{hbox}:
+\begin{lstlisting}
+\documentclass{article}
+\usepackage{bidi}
+\setRTL
+\begin{document}
+\leavevmode\hbox{This is a Test}
+\end{document}
+\end{lstlisting}
+\subsection{\Lcs{bidillap} and \Lcs{bidirlap} Commands}
+In RTL mode, \Lcs{llap} and \Lcs{rlap} do oposite things. Since these two macros are used in a lot of classes and packages, instead modifying these two macros, we have created two new macros \Lcs{bidillap} and \Lcs{bidirlap} which give logical results.
+\subsection{\textsf{LTRitems} and \textsf{RTLitems} Environments}
+If you typeset an \textsf{itemize}, or an \textsf{enumerate}, or a \textsf{description} environment where all \Lcs{item}s are one directional, you have no problem at all as shown below:
+\begin{lstlisting}
+\documentclass{article}
+\begin{document}
+Anyone who reads Old and Middle English literary texts will be familiar with the mid-brown volumes of the EETS, with the symbol of Alfred's 
+\begin{enumerate}
+\item Anyone who reads Old and Middle English literary texts will be familiar with the mid-brown volumes of the EETS, with the symbol of Alfred's 
+\item Anyone who reads Old and Middle English literary texts will be familiar with the mid-brown volumes of the EETS, with the symbol of Alfred's 
+\end{enumerate}
+\end{document}
+\end{lstlisting}
+However if the above example becomes bidirectional, as shown below:
+\begin{lstlisting}
+\documentclass{article}
+\usepackage{bidi}
+\begin{document}
+Anyone who reads Old and Middle English literary texts will be familiar with the mid-brown volumes of the EETS, with the symbol of Alfred's 
+\begin{enumerate}
+\item Anyone who reads Old and Middle English literary texts will be familiar with the mid-brown volumes of the EETS, with the symbol of Alfred's 
+\setRTL
+\item Anyone who reads Old and Middle English literary texts will be familiar with the mid-brown volumes of the EETS, with the symbol of Alfred's 
+\end{enumerate}
+\end{document}
+\end{lstlisting}
+Then some people may argue that this typographically does not look promising. For this purpose, \textsf{RTLitems} environment is provided which has the following syntax:
+\begin{BDef}
+\LBEG{RTLitems}\\
+\quad\Lcs{item} \Larga{text}\\
+\quad\ldots\\
+\LEND{RTLitems}
+\end{BDef}
+ By using the \textsf{RTLitems} environment, the previous example will look like the following:
+\begin{lstlisting}
+\documentclass{article}
+\usepackage{bidi}
+\begin{document}
+Anyone who reads Old and Middle English literary texts will be familiar with the mid-brown volumes of the EETS, with the symbol of Alfred's 
+\begin{enumerate}
+\item Anyone who reads Old and Middle English literary texts will be familiar with the mid-brown volumes of the EETS, with the symbol of Alfred's 
+\begin{RTLitems}
+\item Anyone who reads Old and Middle English literary texts will be familiar with the mid-brown volumes of the EETS, with the symbol of Alfred's 
+\end{RTLitems}
+\end{enumerate}
+\end{document}
+\end{lstlisting}
+Similarly, \textsf{LTRitems} environment is defined which has the following syntax:
+\begin{BDef}
+\LBEG{LTRitems}\\
+\quad\Lcs{item} \Larga{text}\\
+\quad\ldots\\
+\LEND{LTRitems}
+\end{BDef}
+\subsection{\textsf{LTRbibitems} and \textsf{RTLbibitems} Environments}
+The syntax of \textsf{LTRbibitems} and \textsf{RTLbibitems} environments is exactly like the syntax of \textsf{LTRitems} and \textsf{RTLitems} environments but there are  few differences:
+\begin{itemize}
+\item \textsf{LTRitems} and \textsf{RTLitems} environments should only be used for \textsf{list}-like environments (such as \textsf{itemize}, \textsf{enumerate} and \textsf{description} environments) but  \textsf{LTRbibitems} and \textsf{RTLbibitems} environments should only be used for \textsf{thebibliography} environment.
+\item Clearly instead of \Lcs{item}, you have \Lcs{bibitem} inside \textsf{LTRbibitems} and \textsf{RTLbibitems} environments.
+\end{itemize}
+\subsection{\Lcs{setLTRbibitems}, \Lcs{setRTLbibitems}, and \Lcs{setdefaultbibitems} commands}
+\begin{BDef}
+\Lcs{setLTRbibitems}\quad\Lcs{setRTLbibitems}\quad\Lcs{setdefaultbibitems}
+\end{BDef}
+\begin{itemize}
+\item If your whole \textsf{thebibliography} environment is inside RTL mode, but all your \Lcs{bibitem}s are LTR and you actually want to have \Lcs{bibname} to appear on the RHS, you can use \Lcs{setLTRbibitems} command before \textsf{thebibliography} environment.
+\item If your whole \textsf{thebibliography} environment is inside LTR mode, but all your \Lcs{bibitem}s are RTL and you actually want to have \Lcs{bibname} to appear on the LHS, you can use \Lcs{setRTLbibitems} command before \textsf{thebibliography} environment.
+\item \Lcs{setdefaultbibitems} is the default, when your \Lcs{bibitems} are a mixture of LTR and RTL and it does not matter what mode (LTR or RTL) your \textsf{thebibliography} environment is in. Please note that you do not have to use \Lcs{setdefaultbibitems} command  in this case at all.
+
+Consider an example that your \textsf{thebibliography} environment is inside LTR mode and you have, say two \Lcs{bibitem}s. The first \Lcs{bibitem} is LTR and the second \Lcs{bibitem} is RTL. One could typeset this senario as shown below:
+\begin{lstlisting}
+\documentclass{article}
+\usepackage{bidi}
+\begin{document}
+\begin{thebibliography}{99}
+\bibitem This is the first bibitem which is LTR.
+\begin{RTLbibitems}
+\bibitem This is the second bibitem which is RTL.
+\end{RTLbibitems}
+\end{thebibliography}
+\end{document}
+\end{lstlisting}
+\end{itemize}
+
+\subsection{Typesetting margin par}
+By default, in RTL mode, \Lcs{marginpar} appears on LHS and its content is typeset RTL and in LTR mode, \Lcs{marginpar} appears on RHS and its content is typeset LTR. In addition, the  following commands are provided:
+\begin{BDef}
+\Lcs{setRTLmarginpar}\quad\Lcs{setLTRmarginpar}\quad\Lcs{setdefaultmarginpar}\\
+\Lcs{LTRmarginpar}\Largs{\Larga{left-text}}\Largb{\Larga{right-text}}\\
+\Lcs{RTLmarginpar}\Largs{\Larga{left-text}}\Largb{\Larga{right-text}}
+\end{BDef}
+\begin{itemize}
+\item \Lcs{setRTLmarginpar} always makes \Lcs{marginpar} to appear on LHS and the content of \Lcs{marginpar} is typeset RTL (this is independent of the current mode).
+\item \Lcs{setLTRmarginpar} always makes \Lcs{marginpar} to appear on RHS and the content of \Lcs{marginpar} is typeset LTR (this is independent of the current mode).
+\item \Lcs{setdefaultmarginpar} gives the default behaviour of \Lcs{marginpar} as described above.
+\item \Lcs{LTRmarginpar} typesets  \Larga{left-text} and \Larga{right-text} always LTR.
+\item \Lcs{RTLmarginpar} typesets  \Larga{left-text} and \Larga{right-text} always RTL.
+\item in RTL mode, places of \Larga{left-text} and \Larga{right-text} swaps.
+\end{itemize}
+\subsection{Typesetting of Headers and Footers}
+If the main direction of the document is RTL, then headers and footers are typeset RTL and if the main direction of the document is LTR, then headers and footers are typeset LTR.
+\subsection{Tabular Typesetting}
+In RTL mode, tabular are typeset RTL and in LTR mode, tabular are typeset LTR. 
+\subsection{Equation Numbers}
+For \texttt{reqno}, equation numbers are on the right hand side and for \texttt{leqno}, equation numbers are on the left hand side, independent on the current mode.
+\end{document}

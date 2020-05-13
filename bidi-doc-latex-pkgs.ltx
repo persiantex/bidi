@@ -1,0 +1,55 @@
+\documentclass{ltxdoc}
+\input{bidi-doc-preamble.ltx}
+\begin{document}
+\section{Extra \textsf{bidi} Packages and Classes}
+\subsection{\textsf{biditufte} bundle}
+A modified version of \textsf{tufte-latex}, \textsf{biditufte} bundle, mainly for RTL typesetting, is provided. If you never used \textsf{biditufte} bundle or \textsf{tufte-latex} package and you want to use \textsf{biditufte} bundle, then you need to look at \textsf{tufte-latex} package's manual and examples. In addition, for using \textsf{biditufte} bundle, you need to know the following notes:
+\begin{itemize}
+\item You need to use \textsf{biditufte-book} class instead \textsf{tufte-book} class and \textsf{biditufte-handout} class instead \textsf{tufte-handout} class. 
+\item \textsf{biditufte} bundle provides the following extra commands:
+\begin{BDef}
+\Lcs{LTRsidenote}\quad\Lcs{RTLsidenote}\quad\Lcs{LTRmarginnote}\quad\Lcs{RTLmarginnote}
+\end{BDef}
+\item \textsf{biditufte} bundle unlike \textsf{tufts-latex} package, only provides justified lines.
+\item Some features of \textsf{tufte-latex} that does not make any sense in RTL, do not exist in \textsf{biditufte} bundle (no need for \textsf{soul}, \textsf{letterspace} and \textsf{macrotype} packages).
+\item If you want to configure \textsf{biditufte-book} class for your own needs, then you can create a file with the name \texttt{biditufte-book.cfg} and put your \LaTeX{} macros in that file; similarly, if you want to configure \textsf{biditufte-handout} class for your own needs, then you can create a file with the name \texttt{biditufte-handout.cfg} and put your \LaTeX{} macros in that file.
+\end{itemize}
+\subsection{Typesetting \TeX{} and \LaTeX{} Codes}
+The \LaTeX{} codes in this manual are typeset  using the \textsf{bidicode} package.
+In standard \LaTeX\, you can not use footnotes inside \Lcs{chapter}, \Lcs{part}, \Lcs{section}, \Lcs{subsection}, \Lcs{subsection} and any other section-like commands, \Lcs{caption} and tabular environment.
+
+\textsf{bidi} package provides \textsf{bidiftnxtra} package that solves the issue of footnote in standard \LaTeX. \textsf{bidiftnxtra} package should be loaded after \textsf{bidi} package.
+\subsection{Typesetting Poems}
+The \textsf{bidi} package provides \textsf{bidipoem} package for typesetting Persian poems. It provides four environments, \texttt{traditionalpoem}, \texttt{modernpoem} and starred version of these. In the starred version of these environments you do not need to type {\ttfamily\symbol{92}\symbol{92}} and that is the only difference with the normal version of the environments. The \texttt{traditionalpoem} environment and its starred version are also useful for typesetting Classic Arabic poetry, in fact this package may also be useful for other RTL languages.
+
+When using \textsf{bidipoem} package, at least you need to run \texttt{xelatex} twice on your document. In fact, if you run \texttt{xelatex} just once on your document, you get a message saying ``Unjustified poem.  Rerun \texttt{XeLaTeX} to get poem right''.
+
+When you typeset your poems, you might get underfull \Lcs{hbox} messages. This is absolutely normal and if you want to get rid of these underfull \Lcs{hbox} messages, then you would need to use Kashida.
+
+If you need to change the default distance between two verses, you can do just that by:
+\begin{BDef}
+\Lcs{renewcommand}\Lcs{poemcolsepskip}\Largb{\Larga{length}}
+\end{BDef}
+\begin{BDef}
+\LBEG{traditionalpoem}\\
+\Larga{verse1}\texttt{\&}\Larga{verse2}{\ttfamily\symbol{92}\symbol{92}}\\
+\Larga{verse3}\texttt{\&}\Larga{verse4}{\ttfamily\symbol{92}\symbol{92}}\\
+\ldots\\
+\LEND{traditionalpoem}
+\end{BDef}
+\begin{BDef}
+\LBEG{traditionalpoem*}\\
+\Larga{verse1}\texttt{\&}\Larga{verse2}\\
+\Larga{verse3}\texttt{\&}\Larga{verse4}\\
+\ldots\\
+\LEND{traditionalpoem*}
+\end{BDef}
+\subsection{Typesetting Resum\'e}
+The \textsf{bidi} package provides \textsf{bidimoderncv}\footnote{This class is the modified version of \textsf{moderncv} class.} class for typesetting resum\'es. There are two examples, namely \texttt{test-casualcv.tex} and \texttt{test-classiccv.tex}, in the \textsf{doc} folder than you can look and learn how you can use it.
+\subsection{Print Two Pages On A Single Page}
+\textsf{bidi} package provides \textsf{bidi2in1} package  for printing two pages on a single (landscape) A4 page. Page numbers appear on the included pages, and not on the landscape 'container' page.
+
+\subsection{Producing Presentations}
+At the moment, there is only one class that you can prepare your presentations
+with.
+\end{document}

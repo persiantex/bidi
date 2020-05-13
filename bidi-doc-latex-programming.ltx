@@ -1,0 +1,72 @@
+\documentclass{ltxdoc}
+\input{bidi-doc-preamble.ltx}
+\begin{document}
+\section{Some Useful Internal Macros and Programming Tips}
+There are some useful internal macros and programming tips that might be helpful for you. This section, explains all these useful internals and programming tips.
+\subsection{Equating Conditionals}
+\begin{BDef}
+\Lcs{eqnewif}\Largb{\Larga{\Lcs{newconditional1}}}\Largb{\Larga{\Lcs{newconditional2}}}
+\end{BDef}
+In standard \LaTeX, \Lcs{newif} command is provided that you can define a new conditional with it. \Lcs{eqnewif} command is similar to \Lcs{newif} command but:
+\begin{itemize}
+\item With \Lcs{eqnewif} command, you can define two new conditionals instead one, so clearly it has two mandatory arguments.
+\item \Lcs{newconditional1} will be identical to \Lcs{newconditional2}, so that whenever \Lcs{newconditional1} is true, then \Lcs{newconditional2} is also true and whenever \Lcs{newconditional1} is false, then \Lcs{newconditional2} is also false and vice versa.
+\end{itemize}
+\subsection{RTL Conditional}
+\begin{BDef}
+\Lcs{if@RTL}
+\end{BDef}
+\Lcs{if@RTL} conditional is true inside RTL mode and it is false in LTR mode. 
+\subsection{Main RTL Conditional}
+\begin{BDef}
+\Lcs{if@RTLmain}
+\end{BDef}
+If the main direction of the document is RTL, \Lcs{if@RTLmain} is true and if the main direction of the document is LTR, \Lcs{if@RTLmain} is false.
+\subsection{Latin Conditional}
+\begin{BDef}
+\Lcs{if@nonlatin}
+\end{BDef}
+The packages should set the value of \Lcs{if@nonlatin} inside any environment that uses LTR script to false (\Lcs{@nonlatinfalse}) and inside any environment that uses RTL script to true (\Lcs{@nonlatintrue}).
+\subsection{Tags Internal Macro}
+\begin{BDef}
+\Lcs{@iftagsloaded}\Largb{\Larga{tags name}}\Largb{\Larga{do thing(s) if the tag is loaded}}\\
+\Largb{\Larga{do thing(s) if the tag is not loaded}}
+\end{BDef}
+As you can see, the syntax of \Lcs{@iftagsloaded} is exactly the same as the syntax of \Lcs{@ifpackageloaded} and \Lcs{@ifclassloaded}. By tags, we mean things like \texttt{leqno} or \texttt{reqno}. Please note that in the argument \Larga{tags name}, the extension \texttt{clo} should not be given.
+\subsection{Definition File Loaded Internal Macro}
+\begin{BDef}
+\Lcs{@ifdefinitionfileloaded}\Largb{\Larga{definition file name}}\\
+\Largb{\Larga{do thing(s) if the definition file is loaded}}\\
+\Largb{\Larga{do thing(s) if the definition file  is not loaded}}
+\end{BDef}
+As you can see, the syntax of \Lcs{@ifdefinitionfileloaded} is exactly the same as the syntax of \Lcs{@ifpackageloaded} and \Lcs{@ifclassloaded}. By definition file, we mean things like \texttt{hyperref-bidi.def} or \texttt{wrapfig-bidi.def}. Please note that in the argument \Larga{definition file name}, the extension \texttt{def} should not be given.
+\subsection{Tabular Conditional}
+\begin{BDef}
+\Lcs{if@RTLtab}
+\end{BDef}
+If the tabular is typeset RTL, \Lcs{if@RTLtab} is true and if the tabular is typeset LTR, \Lcs{if@RTLtab} is false.
+\subsection{Footnote Conditional}
+\begin{BDef}
+\Lcs{if@RTL@footnote}
+\end{BDef}
+When footnotes are typeset RTL, \Lcs{if@RTL@footnote} is true and when footnotes are typeset LTR, \Lcs{if@RTL@footnote} is false.
+\subsection{Direction Ensuring Macros}
+\begin{BDef}
+\Lcs{@ensure@RTL}\Largb{\Larga{text}}\quad\Lcs{@ensure@RL}\Largb{\Larga{text}}\quad\Lcs{@ensure@LTR}\Largb{\Larga{text}}\\
+\Lcs{@ensure@LR}\Largb{\Larga{text}}\quad
+\Lcs{@ensure@dir}\Largb{\Larga{text}}\quad\Lcs{@ensure@maindir}\Largb{\Larga{text}}
+\end{BDef}
+\begin{itemize}
+\item  \Lcs{@ensure@RTL} and \Lcs{@ensure@RL} internals make sure that \Larga{text} is always typeset RTL, independent on the current mode.
+\item  \Lcs{@ensure@LTR} and \Lcs{@ensure@LR} internals make sure that \Larga{text} is always typeset LTR, independent on the current mode.
+\item \Lcs{@ensure@dir} and \Lcs{@ensure@maindir} if used in RTL mode, they put \Larga{text} inside \Lcs{RLE} and if used in LTR mode, they put the text as it is.
+\end{itemize}
+\subsection{Reset Direction Macro}
+\begin{BDef}
+\Lcs{save@dir}\quad\Lcs{saved@@dir}\quad\Lcs{reset@dir}
+\end{BDef}
+\begin{itemize}
+\item \Lcs{save@dir}, if the direction of typesetting is RTL, defines \Lcs{saved@@dir} to be RTL and if the direction of typesetting is LTR, defines \Lcs{saved@@dir} to be LTR.
+\item \Lcs{reset@dir}, if \Lcs{saved@@dir} is defined as RTL, inserts \Lcs{setRTL} otherwise, if  \Lcs{saved@@dir} is defined as LTR, inserts \Lcs{setLTR}, otherwise does nothing.
+\end{itemize}
+\end{document}
