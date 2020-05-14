@@ -23,7 +23,7 @@ A few sentences describing the overall goals of the pull request's commits.
 
 ## Todos
 - [ ] Relevant to the `xepersian` package
-- [ ] [The `xepersian` package issue tracker](https://github.com/vafakhalighi/xepersian/issues) has been searched for similar issues?
+- [ ] [The `xepersian` package issue tracker](https://github.com/persiantex/xepersian/issues) has been searched for similar issues?
 - [ ] Issue tracker has been searched for similar issues?
 - [ ] Links to <tex.stackexchange.com> discussion if appropriate
 - [ ] Links to <qa.parsilatex.com> discussion if appropriate
