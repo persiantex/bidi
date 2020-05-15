@@ -5,7 +5,7 @@
 %<*readme>
 ___________________
 The bidi package
-v36.1
+v36.2
 
 This package provides a convenient interface for typesetting
 bidirectional texts in Plain TeX and LaTeX, using XeTeX engine.
@@ -21,7 +21,7 @@ In doing so, please always explain your issue well enough,
 and always include a minimal working example showing the 
 issue.
   
-Current version release date: 2020/05/14
+Current version release date: 2020/05/15
 
 ___________________________________________
 Copyright (c) Vafa Khalighi 2007--2020
@@ -219,7 +219,7 @@ by Vafa Khalighi.
 \documentclass{ltxdoc}
 \input{bidi-doc-preamble.ltx}
 \hypersetup{%
-  pdftitle={Source documentation for version 36.1 of the bidi
+  pdftitle={Source documentation for version 36.2 of the bidi
                 package}%
 }
 \EnableCrossrefs
@@ -238,7 +238,7 @@ by Vafa Khalighi.
 % \GetFileInfo{\jobname.dtx}
 % \title{\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}\\
 %\LARGE Bidirectional typesetting in plain \TeX{} and \LaTeX, using \XeTeX{} engine\\[5pt]
-%\large Source documentation for \textcolor{blue!65!black}{version 36.1}}
+%\large Source documentation for \textcolor{blue!65!black}{version 36.2}}
 % \author{Vafa Khalighi\thanks{Thanks to the bidi-tex GitHub organization consisted of David Carlisle and other members of the  {\LaTeX} team to maintain the package in the period 2018--2020.}}
 %\setcounter{page}{0}
 %\thispagestyle{empty}
@@ -248,7 +248,7 @@ by Vafa Khalighi.
 %\textcolor{blue!65!black}{\Huge The \textsf{bidi} \textit{Package}}
 %
 %\Large
-%Source documentation for \textcolor{blue!65!black}{version 36.1}}
+%Source documentation for \textcolor{blue!65!black}{version 36.2}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -1898,8 +1898,8 @@ by Vafa Khalighi.
 % \section{File \texttt{bidi.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\bididate{2020/05/14}
-\def\bidi@version{36.1}
+\def\bididate{2020/05/15}
+\def\bidi@version{36.2}
 \ProvidesPackage{bidi}[\bididate\space v\bidi@version\space
 Bidirectional typesetting in plain TeX and LaTeX]
 \edef\@bidi@info{****************************************************^^J%
@@ -1983,7 +1983,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \newcommand*{\@bidi@pdfcustomproperties}{%
   This is the bidi package, Version \bidi@version,
-  Released May 13, 2020. 
+  Released May 15, 2020. 
 }
 \@RTLmainfalse
 \AtBeginDocument{%
@@ -2225,9 +2225,9 @@ Bidirectional typesetting in plain TeX and LaTeX]
 %\fi
 % \section{File \texttt{bidi.tex}}
 %    \begin{macrocode}
-\def\bididate{2020/05/14}
+\def\bididate{2020/05/15}
 \catcode`@=11
-\def\bidi@version{36.1}
+\def\bidi@version{36.2}
 \let \protect \relax
 \newlinechar`\^^J
 \edef\@bidi@info{****************************************************^^J%
@@ -2325,7 +2325,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 }
 \def\@bidi@pdfcustomproperties{%
   This is the bidi package, Version \bidi@version,
-  Released May 13, 2020. 
+  Released May 15, 2020. 
 }
 \def\bidi@pdfm@mark{%
   \special{pdf:%
@@ -2977,7 +2977,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
   \fi}
 \newlength{\bibindent}
 \setlength{\bibindent}{1.5em}
-\newcommand*{\bibliographyitemlabel}{\includegraphics{bibitem.pdf}}
+\newcommand*{\bibliographyitemlabel}{\includegraphics{bidi-bibitem.pdf}}
 \newenvironment{thebibliography}[1]%
   {%
     \section{\refname}%
@@ -25823,7 +25823,7 @@ Lion & Yellow & Elephants & Tartare \\\cline{4-4}
 % \typeout{*}
 % \typeout{* \space\space\space all *.cls, *.sty and *.def  files}
 % \typeout{*}
-% \typeout{* \space\space\space and bibitem.pdf  file}
+% \typeout{* \space\space\space and bidi-bibitem.pdf  file}
 % \typeout{*************************************************************}
 %
 \endinput
