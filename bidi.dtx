@@ -666,7 +666,7 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{amsmath-xetex-bidi.def}}
 %    \begin{macrocode}
-\ProvidesFile{amsmath-xetex-bidi.def}[2018/01/08 v1.1 bidi adaptations for amsmath package for XeTeX engine]
+\ProvidesFile{amsmath-xetex-bidi.def}[2020/05/16 v1.2 bidi adaptations for amsmath package for XeTeX engine]
 \let\veqno=\eqno
 \iftagsleft@ \let\veqno=\leqno \fi
 \renewcommand{\numberwithin}[3][\arabic]{%
@@ -677,6 +677,13 @@ by Vafa Khalighi.
         \@xp\@nx\csname the#3\endcsname \@nx\@SepMark\@nx#1{#2}}}}%
 }
 \def\tagform@#1{\maketag@@@{\if@nonlatin\beginR\fi(\kern\z@\ignorespaces#1\unskip\@@italiccorr)\if@nonlatin\endR\fi}}
+
+\bidi@patchcmd\math@cr@@@align\place@tag{%
+    \place@tag
+  \else
+    \place@tag
+}{}{}
+
 %    \end{macrocode}
 % \iffalse
 %</amsmath-xetex-bidi.def>
