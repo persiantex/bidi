@@ -2178,6 +2178,7 @@ Bidirectional typesetting in plain TeX and LaTeX]
 \XeTeXcharclass `\. \bidi@sepmark@charclass
 \XeTeXcharclass `\- \bidi@sepmark@charclass
 \bidi@digits=`\0 \loop \XeTeXcharclass \bidi@digits \bidi@digits@charclass \ifnum\bidi@digits<`\9 \advance\bidi@digits \@ne \repeat
+\bidi@digits=`\٠ \loop \XeTeXcharclass \bidi@digits \bidi@digits@charclass \ifnum\bidi@digits<`\٩ \advance\bidi@digits \@ne \repeat
 \bidi@digits=`\۰ \loop \XeTeXcharclass \bidi@digits \bidi@digits@charclass \ifnum\bidi@digits<`\۹ \advance\bidi@digits \@ne \repeat
 \XeTeXinterchartoks \bidi@sepmark@charclass  \bidi@digits@charclass = {\DigitsDotDashInterCharToks}
 \newcommand*{\DigitsDotDashInterCharToks}{\if@nonlatin\char"200F \fi}
